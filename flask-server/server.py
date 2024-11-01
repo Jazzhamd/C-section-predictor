@@ -1,4 +1,7 @@
+#server.py
 from flask import Flask, request, jsonify
+import pickle
+import pandas as pd
 import joblib
 import numpy as np
 import tensorflow as tf
@@ -13,9 +16,12 @@ app = Flask(__name__)
 CORS(app)  # Initialize CORS here
 
 # Load models
-knn_model = joblib.load("KNN.pkl")
-logreg_model = joblib.load("Logreg.pkl")
-dt_model = joblib.load("dt.pkl")
+with open('KNN.pkl', 'rb') as file:
+    knn_model = pickle.load(file)
+with open('dt.pkl', 'rb') as file:
+    dt_model = pickle.load(file)
+with open('Logreg.pkl', 'rb') as file:
+    logreg_model = pickle.load(file)
 nn_model = load_model("nn_model.keras")
 
 # Load normal and C-section instances
@@ -31,6 +37,7 @@ def predict():
         # Extract model type and class selection from request
         model_type = data.get('model_name')  # Updated to match your client-side key
         birth_class = data.get('birth_type')
+        print(f"Received birth type: {birth_class}, model: {model_type}")
 
         # Select a random instance based on the birth class
         if birth_class == 'normal':
@@ -55,8 +62,11 @@ def predict():
         else:
             return jsonify({"error": "Invalid model type specified"}), 400
         
+        print(f"Prediction result: {prediction}")
+
+        
         # Map the prediction to the corresponding birth type
-        birth_type = "Normal" if prediction[0] == 1 else "C-section"
+        birth_type = "Normal" if prediction[0] == 0 else "C-section"
         
         return jsonify({
             "prediction": int(prediction[0]),

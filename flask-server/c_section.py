@@ -8,7 +8,7 @@ Original file is located at
     https://colab.research.google.com/drive/18eU9J00O-PJrJAx4dliO80tMhjt-EVAP
 """
 
-
+import pickle
 import pandas as pd
 import numpy as np
 import joblib
@@ -115,17 +115,25 @@ for column in df.select_dtypes(include='object').columns:
     df[column] = le.fit_transform(df[column])
     label_encoders[column] = le
 
-df['CLASSIFICATION OF BIRTH'] = LabelEncoder().fit_transform(df['CLASSIFICATION OF BIRTH'])
+df['CLASSIFICATION OF BIRTH'] = df['CLASSIFICATION OF BIRTH'].replace({'c-section': 1, 'normal': 0})
+
+
 
 X = df.drop(columns=['CLASSIFICATION OF BIRTH', 'TYPE OF BIRTH'])
 y = df['CLASSIFICATION OF BIRTH']
 # Creating separate NumPy arrays for normal birth and C-section instances
-normal_birth_instances = X[y == 1]  # Assuming 0 corresponds to normal birth
-c_section_instances = X[y == 0]      # Assuming 1 corresponds to C-section
+normal_birth_instances = X[y == 0]  # Assuming 0 corresponds to normal birth
+c_section_instances = X[y == 1]      # Assuming 1 corresponds to C-section
 
 # Save them as NumPy files
 np.save("normal_birth_instances.npy", normal_birth_instances)
 np.save("c_section_instances.npy", c_section_instances)
+if isinstance(normal_birth_instances, pd.DataFrame):
+    normal_birth_instances = normal_birth_instances.values
+if isinstance(c_section_instances, pd.DataFrame):
+    c_section_instances = c_section_instances.values
+print("Sample from normal birth instances:", normal_birth_instances[0])
+print("Sample from C-section instances:", c_section_instances[0])
 
 smote=SMOTE(random_state=42)
 X_resampled,y_resampled=smote.fit_resample(X,y)
@@ -143,7 +151,8 @@ print("KNN MODEL RESULTS")
 
 knn = KNeighborsClassifier(n_neighbors=11)
 knn.fit(X_train, y_train)
-joblib.dump(knn,"KNN.pkl")
+with open('KNN.pkl', 'wb') as file:
+    pickle.dump(knn, file)
 y_pred = knn.predict(X_test)
 
 print("\nConfusion Matrix for KNN:")
@@ -163,7 +172,8 @@ X_resampled,y_resampled=smote.fit_resample(X,y)
 print("LOGISTIC REGRESSION MODEL RESULTS")
 logreg = LogisticRegression(max_iter=1000)
 logreg.fit(X_train, y_train)
-joblib.dump(logreg,"Logreg.pkl")
+with open('Logreg.pkl', 'wb') as file:
+    pickle.dump(logreg, file)
 
 y_pred_logreg = logreg.predict(X_test)
 
@@ -183,7 +193,8 @@ print(f"Accuracy of Logistic Regression: {logreg_accuracy:.2f}%")
 print("DECISION TREE MODEL RESULTS")
 dt = DecisionTreeClassifier(random_state=42)
 dt.fit(X_train, y_train)
-joblib.dump(dt,"dt.pkl")
+with open('dt.pkl', 'wb') as file:
+    pickle.dump(dt, file)
 
 y_pred_dt = dt.predict(X_test)
 

@@ -10,6 +10,8 @@ const Predict = React.forwardRef((props, ref) => {
     // Handle prediction on form submission
     const handlePredict = async (event) => {
         event.preventDefault();  // Prevent default form submission behavior
+        console.log('Form submitted with:', { birthType, model });
+
         if (!birthType || !model) {
             alert('Please select both birth type and model.');
             return;
@@ -20,11 +22,13 @@ const Predict = React.forwardRef((props, ref) => {
                 birth_type: birthType,
                 model_name: model
             });
+            console.log('Response from server:', response.data);
             setPredictionResult(response.data);
             setError(null);  // Reset error state
         } catch (error) {
             console.error("Prediction error:", error);
             if (error.response) {
+                console.error("Error response data:", error.response.data);
                 setError(error.response.data.error || "There was an error getting the prediction.");
             } else {
                 setError("There was an error getting the prediction.");
@@ -39,7 +43,10 @@ const Predict = React.forwardRef((props, ref) => {
                 <div>
                     <label>
                         Select Birth Type:
-                        <select value={birthType} onChange={(e) => setBirthType(e.target.value)}>
+                        <select value={birthType} onChange={(e) => {
+                            console.log('Birth type selected:', e.target.value);
+                            setBirthType(e.target.value);
+                        }}>
                             <option value="">--Choose--</option>
                             <option value="normal">Normal Birth</option>
                             <option value="c-section">C-Section</option>
@@ -50,7 +57,10 @@ const Predict = React.forwardRef((props, ref) => {
                 <div>
                     <label>
                         Select Model:
-                        <select value={model} onChange={(e) => setModel(e.target.value)}>
+                        <select value={model} onChange={(e) => {
+                            console.log('Model selected:', e.target.value);
+                            setModel(e.target.value);
+                        }}>
                             <option value="">--Choose--</option>
                             <option value="knn">K-Nearest Neighbors</option>
                             <option value="logistic_regression">Logistic Regression</option>
