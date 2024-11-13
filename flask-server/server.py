@@ -41,7 +41,10 @@ def predict():
 
         # Select a random instance based on the birth class
         if birth_class == 'normal':
-            features = random.choice(normal_birth_instances)
+            features = np.array([ 17,  23, 162, 403,   0,   0,   0,   0,   0,  22,   0,   0,   0,
+         0,   0,   0,   0,   0,   0,   1,   0,   0,   1,   0,   1,   0,
+        16,   1,   6,   2,   0,   2,   0,   0,   2,   0,   0,   2,   0,
+         0,   0, 298,   0,   0,  14,   0,   0,   0,   0])
         elif birth_class == 'c-section':
             features = random.choice(c_section_instances)
         else:

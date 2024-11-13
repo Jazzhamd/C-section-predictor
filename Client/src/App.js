@@ -1,7 +1,7 @@
-import { useEffect, useState, useRef } from "react";
+import { useRef } from "react";
 import React from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
-import Home from "./Components/Home";
 import About from "./Components/About";
 import Testimonial from "./Components/Testimonial";
 import Model from "./Components/Model";
@@ -9,28 +9,18 @@ import Navbar from "./Components/Navbar";
 import Predict from "./Components/Predict";
 
 function App() {
-  const homeRef = useRef(null);
-  const aboutRef = useRef(null);
+  const aboutRef = useRef(null);  // Ref for the About section
   const testimonialRef = useRef(null);
   const modelRef = useRef(null);
-  const predictRef = useRef(null);
-  const [data, setData] = useState([{}]);
+  const predictRef = useRef(null);  // Ref for the Predict section
 
-  useEffect(() => {
-    fetch("/results")
-      .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-        console.log(data);
-      });
-  }, []);
   return (
-    <div>
+    <div style={{ backgroundColor: '#ffe6e6' }}>
       <Navbar
-        refs={{ homeRef, aboutRef, testimonialRef, modelRef, predictRef }}
+        refs={{ aboutRef, testimonialRef, modelRef, predictRef }}
       />
-      <Home ref={homeRef} />
-      <About ref={aboutRef} />
+      {/* Pass the aboutRef to About component */}
+      <About ref={aboutRef} predictRef={predictRef} />
       <Testimonial ref={testimonialRef} />
       <Model ref={modelRef} />
       <Predict ref={predictRef} />
