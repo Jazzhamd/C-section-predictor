@@ -12,7 +12,7 @@ const Navbar = ({ refs }) => {
     const handleScrollPosition=()=>{
         const sections = [
             { ref: refs.aboutRef, name: 'About' },
-            { ref: refs.testimonialRef, name: 'Testimonial' },
+            { ref: refs.highlightRef, name: 'Highlights' },
             { ref: refs.modelRef, name: 'Models' },
             { ref: refs.predictRef, name: 'Predict' }
         ];
@@ -35,7 +35,7 @@ const Navbar = ({ refs }) => {
     }, []);
     const menuOptions = [
         { text: 'About', ref: refs.aboutRef },
-        { text: 'Testimonial', ref: refs.testimonialRef },
+        { text: 'Highlights', ref: refs.highlightRef },
         { text: 'Models', ref: refs.modelRef },
         { text: 'Predict', ref: refs.predictRef }
     ];

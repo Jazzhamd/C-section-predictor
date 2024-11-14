@@ -46,7 +46,6 @@ const Predict = React.forwardRef((props, ref) => {
       ref={ref}
       style={{
         height: "100vh",
-        paddingTop: "80px",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
