@@ -113,29 +113,22 @@ df['CLASSIFICATION OF BIRTH'] = df['CLASSIFICATION OF BIRTH'].replace({'c-sectio
 
 X = df.drop(columns=['CLASSIFICATION OF BIRTH', 'TYPE OF BIRTH'])
 y = df['CLASSIFICATION OF BIRTH']
+
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.4, random_state=42)
+smote=SMOTE(random_state=42)
+X_resampled,y_resampled=smote.fit_resample(X_train,y_train)
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_resampled)
+X_test = scaler.transform(X_test)
+y_train=y_resampled
 # Creating separate NumPy arrays for normal birth and C-section instances
-normal_birth_instances = X[y == 0]  # Assuming 0 corresponds to normal birth
-c_section_instances = X[y == 1]      # Assuming 1 corresponds to C-section
+normal_birth_instances = X_test[y_test == 0]  # Assuming 0 corresponds to normal birth
+c_section_instances = X_test[y_test == 1]      # Assuming 1 corresponds to C-section
 
 # Save them as NumPy files
 np.save("normal_birth_instances.npy", normal_birth_instances)
 np.save("c_section_instances.npy", c_section_instances)
-if isinstance(normal_birth_instances, pd.DataFrame):
-    normal_birth_instances = normal_birth_instances.values
-if isinstance(c_section_instances, pd.DataFrame):
-    c_section_instances = c_section_instances.values
-print("Sample from normal birth instances:", normal_birth_instances[0])
-print("Sample from C-section instances:", c_section_instances[0])
-
-smote=SMOTE(random_state=42)
-X_resampled,y_resampled=smote.fit_resample(X,y)
-print("Class distribution after SMOTE:", Counter(y_resampled))
-X_train, X_test, y_train, y_test = train_test_split(X_resampled, y_resampled, test_size=0.4, random_state=42)
-
-scaler = StandardScaler()
-X_train = scaler.fit_transform(X_train)
-X_test = scaler.transform(X_test)
-
 """K-Nearest Neighbors"""
 
 print("KNN MODEL RESULTS")

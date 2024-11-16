@@ -98,11 +98,10 @@ const Predict = React.forwardRef((props, ref) => {
       {error && <div style={{ color: "red" }}>{error}</div>}
 
       {predictionResult && (
-        <div>
+        <div style={{paddingTop:"50px"}}>
           <h3>Prediction Result:</h3>
           <p>Prediction: {predictionResult.prediction}</p>
           <p>Birth Type: {predictionResult.birth_type}</p>
-          <p>Selected Features: {JSON.stringify(predictionResult.features)}</p>
         </div>
       )}
     </div>
