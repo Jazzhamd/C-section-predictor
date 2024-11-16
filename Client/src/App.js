@@ -7,23 +7,26 @@ import Highlights from "./Components/Highlights";
 import Model from "./Components/Model";
 import Navbar from "./Components/Navbar";
 import Predict from "./Components/Predict";
+import Visualize from "./Components/Visualize";
 
 function App() {
-  const aboutRef = useRef(null);  // Ref for the About section
+  const aboutRef = useRef(null);
   const highlightRef = useRef(null);
   const modelRef = useRef(null);
-  const predictRef = useRef(null);  // Ref for the Predict section
+  const predictRef = useRef(null);
+  const visRef = useRef(null);
 
   return (
     <div style={{ backgroundColor: '#ffe6e6' }}>
       <Navbar
-        refs={{ aboutRef, highlightRef, modelRef, predictRef }}
+        refs={{ aboutRef, highlightRef, modelRef, predictRef, visRef }}
       />
-      {/* Pass the aboutRef to About component */}
-      <About ref={aboutRef} predictRef={predictRef} />
+      
+      <About ref={aboutRef} />
       <Highlights ref={highlightRef} />
       <Model ref={modelRef} />
       <Predict ref={predictRef} />
+      <Visualize ref={visRef} />
     </div>
   );
 }
