@@ -112,6 +112,8 @@ const Visualize = React.forwardRef((props, ref) => {
       x: {
         stacked: true,
         ticks: { color: "#ffe6e6" },
+        categoryPercentage: 0.5, // Reduces the width of bars, making them thinner
+    barPercentage: 0.8, // Adjusts the spacing between bars
       },
       y: {
         stacked: true,
