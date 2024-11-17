@@ -166,7 +166,7 @@ const Visualize = React.forwardRef((props, ref) => {
                   <Typography
                     variant="body2"
                     style={{ color: "#ffe6e6", paddingTop: "20px" }}
-                    sx={{fontSize:'24px'}}
+                    sx={{fontSize:'22px'}}
                   >
                     Confusion Matrix
                   </Typography>
@@ -190,7 +190,7 @@ const Visualize = React.forwardRef((props, ref) => {
                   <Typography
                     variant="body2"
                     style={{ color: "#ffe6e6", paddingTop: "20px" }}
-                  sx={{fontSize:'24px'}}
+                  sx={{fontSize:'22px'}}
                   >
                     Model Comparison
                   </Typography>
