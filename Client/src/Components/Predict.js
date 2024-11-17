@@ -52,7 +52,7 @@ const Predict = React.forwardRef((props, ref) => {
         alignItems: "center",
       }}
     >
-      <h2 style={{ marginBottom: '50px' }}>Predict</h2>
+      <h2 style={{ marginTop:'200px',marginBottom: '50px' }}>Predict</h2>
       <Form onSubmit={handlePredict} style={{ width: "300px" }}>
         <Form.Label>Select Birth Type</Form.Label>
         <Form.Select
@@ -77,6 +77,8 @@ const Predict = React.forwardRef((props, ref) => {
           <option value="logistic_regression">Logistic Regression</option>
           <option value="decision_tree">Decision Tree</option>
           <option value="neural_network">Neural Network</option>
+          <option value="random_forest">Random Forest Classifier</option>
+          <option value="svm">Support Vector Machine</option>
         </Form.Select>
 
         {/* Center the button by using a flex container */}

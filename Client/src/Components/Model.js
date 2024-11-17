@@ -25,7 +25,11 @@ const Model = React.forwardRef((props, ref) => {
           ? "A model that makes decisions based on feature splits."
           : name === "Logistic Regression"
           ? "A statistical model used for binary classification."
-          : "A model inspired by the human brain structure for complex tasks.",
+          : name === "Neural Network"
+          ? "A model inspired by the human brain structure for complex tasks."
+          : name === "Random Forest"
+          ? "An ensemble learning method that builds multiple decision trees and combines their outputs for robust predictions."
+          : "A supervised learning algorithm that finds the optimal hyperplane to classify data points into categories."
     }));
     setModelsData(formattedModels);
   }, []);

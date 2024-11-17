@@ -24,6 +24,10 @@ with open('dt.pkl', 'rb') as file:
     dt_model = pickle.load(file)
 with open('Logreg.pkl', 'rb') as file:
     logreg_model = pickle.load(file)
+with open('rf.pkl','rb') as file:
+    rf_model = pickle.load(file)
+with open('clf.pkl','rb') as file:
+    clf_model = pickle.load(file)
 nn_model = load_model("nn_model.keras")
 
 # # Load normal and C-section instances
@@ -65,6 +69,10 @@ def predict():
         elif model_type == 'neural_network':
             prediction = (nn_model.predict(features) > 0.5).astype("int32")
             print("Predicted using neural network")
+        elif model_type == 'random_forest':
+            prediction = (rf_model.predict(features))
+        elif model_type == 'svm':
+            prediction = (clf_model.predict(features))
         else:
             return jsonify({"error": "Invalid model type specified"}), 400
         

@@ -17,6 +17,8 @@ import warnings
 from tensorflow import get_logger
 from scikeras.wrappers import KerasClassifier, KerasRegressor
 import keras
+from sklearn.ensemble import RandomForestClassifier
+from sklearn import svm
 from tensorflow.keras.layers import Dense,Input
 from tensorflow.keras.models import Sequential
 
@@ -149,6 +151,7 @@ KNN_accuracy = accuracy_score(y_test, y_pred)*100
 KNN_precision = precision_score(y_test,y_pred)*100
 KNN_recall = recall_score(y_test,y_pred)*100
 KNN_f1score = f1_score(y_test,y_pred)*100
+KNN_confusion_matrix = confusion_matrix(y_test,y_pred).tolist()
 print(f"Accuracy of KNN: {KNN_accuracy:.2f}%")
 
 """Logistic Regression"""
@@ -171,6 +174,7 @@ logreg_accuracy = accuracy_score(y_test, y_pred_logreg)*100
 logreg_precision = precision_score(y_test,y_pred_logreg)*100
 logreg_recall = recall_score(y_test,y_pred_logreg)*100
 logreg_f1score = f1_score(y_test,y_pred_logreg)*100
+logreg_confusion_matrix = confusion_matrix(y_test,y_pred_logreg).tolist()
 print(f"Accuracy of Logistic Regression: {logreg_accuracy:.2f}%")
 
 """Decision Tree"""
@@ -192,6 +196,7 @@ dectree_accuracy = accuracy_score(y_test, y_pred_dt)*100
 dectree_precision = precision_score(y_test,y_pred_dt)*100
 dectree_recall = recall_score(y_test,y_pred_dt)*100
 dectree_f1score = f1_score(y_test,y_pred_dt)*100
+dectree_confusion_matrix = confusion_matrix(y_test,y_pred_dt).tolist()
 print(f"Accuracy of Decision Tree Classifier: {dectree_accuracy:.2f}%")
 
 """Neural Networks"""
@@ -225,37 +230,95 @@ nn_accuracy = accuracy_score(y_test, neural_pred)*100
 nn_precision = precision_score(y_test,neural_pred)*100
 nn_recall = recall_score(y_test,neural_pred)*100
 nn_f1score = f1_score(y_test,neural_pred)*100
+nn_confusion_matrix = confusion_matrix(y_test,neural_pred).tolist()
 print(f"Accuracy of neural network: {nn_accuracy:.2f}%")
 
-# Example metrics for different models
+""" Random Forest Classifier """
+rf = RandomForestClassifier()
+rf.fit(X_train, y_train)
+with open('rf.pkl', 'wb') as file:
+    pickle.dump(rf, file)
+y_pred_rf = rf.predict(X_test)
+
+
+print("\nConfusion Matrix for Random forest Classifier:")
+print(confusion_matrix(y_test, y_pred_rf))
+print("\nClassification Report for Random forest Classifier:")
+print(classification_report(y_test, y_pred_rf))
+
+randomforest_accuracy = accuracy_score(y_test, y_pred_rf)*100
+randomforest_precision = precision_score(y_test,y_pred_rf)*100
+randomforest_recall = recall_score(y_test,y_pred_rf)*100
+randomforest_f1score = f1_score(y_test,y_pred_rf)*100
+randomforest_confusion_matrix = confusion_matrix(y_test,y_pred_rf).tolist()
+print(f"Accuracy of Random Forest Classifier: {randomforest_accuracy:.2f}%")
+
+"""SUPPORT VECTOR MACHINE"""
+clf = svm.SVC(kernel='linear')
+clf.fit(X_train, y_train)
+with open('clf.pkl', 'wb') as file:
+    pickle.dump(clf, file)
+y_pred_clf = clf.predict(X_test)
+
+print("\nConfusion Matrix for Support Vector Machine:")
+print(confusion_matrix(y_test, y_pred_clf))
+print("\nClassification Report for Support Vector Machine:")
+print(classification_report(y_test, y_pred_clf))
+
+
+svm_accuracy = accuracy_score(y_test, y_pred_clf)*100
+svm_precision = precision_score(y_test,y_pred_clf)*100
+svm_recall = recall_score(y_test,y_pred_clf)*100
+svm_f1score = f1_score(y_test,y_pred_clf)*100
+svm_confusion_matrix = confusion_matrix(y_test,y_pred_clf).tolist()
+print(f"Accuracy of Support Vector Machine: {svm_accuracy:.2f}%")
+
 results = {
     "K Nearest Neighbours": {
         "accuracy": KNN_accuracy,
         "precision": KNN_precision,
         "recall": KNN_recall,
-        "f1_score": KNN_f1score
+        "f1_score": KNN_f1score,
+        "confusion_matrix": KNN_confusion_matrix
     },
     "Decision Tree": {
         "accuracy": dectree_accuracy,
         "precision": dectree_precision,
         "recall": dectree_recall,
-        "f1_score": dectree_f1score
+        "f1_score": dectree_f1score,
+        "confusion_matrix": dectree_confusion_matrix
     },
     "Logistic Regression": {
         "accuracy": logreg_accuracy,
         "precision": logreg_precision,
         "recall": logreg_recall,
-        "f1_score": logreg_f1score
+        "f1_score": logreg_f1score,
+        "confusion_matrix": logreg_confusion_matrix
     },
     "Neural Network":{
       "accuracy": nn_accuracy,
         "precision": nn_precision,
         "recall": nn_recall,
-        "f1_score": nn_f1score
+        "f1_score": nn_f1score,
+        "confusion_matrix":nn_confusion_matrix
+    },
+    "Random Forest":{
+        "accuracy": randomforest_accuracy,
+        "precision": randomforest_precision,
+        "recall": randomforest_recall,
+        "f1_score": randomforest_f1score,
+        "confusion_matrix":randomforest_confusion_matrix
+    },
+    "Support Vector Machine":{
+        "accuracy": svm_accuracy,
+        "precision": svm_precision,
+        "recall": svm_recall,
+        "f1_score": svm_f1score,
+        "confusion_matrix":svm_confusion_matrix
     }
 }
 
 # Save to JSON file
 import json
-with open("results.json", "w") as f:
+with open("../Client/src/results.json", "w") as f:
     json.dump(results, f)
