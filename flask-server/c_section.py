@@ -131,6 +131,12 @@ c_section_instances = X_test[y_test == 1]      # Assuming 1 corresponds to C-sec
 # Save them as NumPy files
 np.save("normal_birth_instances.npy", normal_birth_instances)
 np.save("c_section_instances.npy", c_section_instances)
+with open('label_encoders.pkl', 'wb') as le_file:
+    pickle.dump(label_encoders, le_file)
+
+# Save the StandardScaler
+with open('standard_scaler.pkl', 'wb') as scaler_file:
+    pickle.dump(scaler, scaler_file)
 """K-Nearest Neighbors"""
 
 print("KNN MODEL RESULTS")
