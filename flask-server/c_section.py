@@ -103,6 +103,18 @@ df = df.dropna(axis=1, how='all')
 imputer = SimpleImputer(strategy='most_frequent')
 df = pd.DataFrame(imputer.fit_transform(df), columns=df.columns)
 
+c_section_df = df[df['CLASSIFICATION OF BIRTH'] == 'c-section']
+normal_df = df[df['CLASSIFICATION OF BIRTH'] == 'normal']
+
+# Select a random instance from each group
+random_c_section_instance = c_section_df.sample(n=1, random_state=42).drop(columns=["CLASSIFICATION OF BIRTH", "TYPE OF BIRTH"])
+random_normal_instance = normal_df.sample(n=1, random_state=42).drop(columns=["CLASSIFICATION OF BIRTH", "TYPE OF BIRTH"])
+
+
+# Save these instances as separate CSV files
+random_c_section_instance.to_csv("random_c_section_instance.csv", index=False)
+random_normal_instance.to_csv("random_normal_instance.csv", index=False)
+
 label_encoders = {}
 for column in df.select_dtypes(include='object').columns:
     le = LabelEncoder()
