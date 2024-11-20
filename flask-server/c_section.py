@@ -140,8 +140,8 @@ X_train = scaler.fit_transform(X_resampled)
 X_test = scaler.transform(X_test)
 y_train=y_resampled
 # Creating separate NumPy arrays for normal birth and C-section instances
-normal_birth_instances = X_test[y_test == 0]  # Assuming 0 corresponds to normal birth
-c_section_instances = X_test[y_test == 1]      # Assuming 1 corresponds to C-section
+normal_birth_instances = X_test[y_test == 0]  
+c_section_instances = X_test[y_test == 1]      
 
 # Save them as NumPy files
 np.save("normal_birth_instances.npy", normal_birth_instances)
@@ -177,7 +177,7 @@ print(f"Accuracy of KNN: {KNN_accuracy:.2f}%")
 
 """Logistic Regression"""
 
-X_resampled,y_resampled=smote.fit_resample(X,y)
+
 print("LOGISTIC REGRESSION MODEL RESULTS")
 logreg = LogisticRegression(max_iter=1000)
 logreg.fit(X_train, y_train)
@@ -241,7 +241,7 @@ print("Neural network processing...")
 estimator = KerasClassifier(model=create_model, epochs=30, batch_size=32, verbose=1, random_state=42)
 
 
-# After training the neural network
+
 estimator.fit(X_train, y_train)
 model_to_save = estimator.model_
 model_to_save.save("nn_model.keras")
@@ -339,7 +339,7 @@ results = {
     }
 }
 
-# Save to JSON file
+
 import json
 with open("../Client/src/results.json", "w") as f:
     json.dump(results, f)

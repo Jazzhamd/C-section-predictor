@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 import { Bar } from "react-chartjs-2";
 import { Line } from "react-chartjs-2";
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
-import modelsData from "../results.json"; // Import the JSON file
+import modelsData from "../results.json"; 
 import confusionMatrixImg from "../Landing Page Assets/confusion-matrix.png";
 import precisionRecallImg from "../Landing Page Assets/precision-recall.png";
 import modelComparisionImg from "../Landing Page Assets/model-comparision.png";
@@ -45,15 +45,15 @@ const Visualize = React.forwardRef((props, ref) => {
       datasets: [
         {
           label: "True 0",
-          data: confusionMatrix[0], // First row of the confusion matrix
-          backgroundColor: "#FF5733", // Red
+          data: confusionMatrix[0], 
+          backgroundColor: "#FF5733",
           borderColor: "#FF5733",
           borderWidth: 1,
         },
         {
           label: "True 1",
-          data: confusionMatrix[1], // Second row of the confusion matrix
-          backgroundColor: "#33FF57", // Green
+          data: confusionMatrix[1], 
+          backgroundColor: "#33FF57", 
           borderColor: "#33FF57",
           borderWidth: 1,
         },
@@ -112,8 +112,8 @@ const Visualize = React.forwardRef((props, ref) => {
       x: {
         stacked: true,
         ticks: { color: "#ffe6e6" },
-        categoryPercentage: 0.5, // Reduces the width of bars, making them thinner
-    barPercentage: 0.8, // Adjusts the spacing between bars
+        categoryPercentage: 0.5, 
+    barPercentage: 0.8, 
       },
       y: {
         stacked: true,
@@ -304,7 +304,7 @@ const Visualize = React.forwardRef((props, ref) => {
           </h2>
           <Container style={{ paddingTop: "40px" }}>
             <Row>
-              {/* First Row (Accuracy, Precision) */}
+              
               <Col xs={12} md={6}>
                 <Box
                   sx={{
@@ -361,7 +361,7 @@ const Visualize = React.forwardRef((props, ref) => {
               </Col>
             </Row>
 
-            {/* Second Row (Recall, F1 Score) */}
+            
             <Row>
               <Col xs={12} md={6}>
                 <Box

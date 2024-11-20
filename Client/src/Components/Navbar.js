@@ -25,7 +25,7 @@ const Navbar = ({ refs }) => {
         let minDistance = window.innerHeight;
 
         sections.forEach((section) => {
-            // Check if ref.current exists before accessing getBoundingClientRect()
+            
             if (section.ref.current) {
                 const rect = section.ref.current.getBoundingClientRect();
                 if (rect.top >= 0 && rect.top < minDistance) {

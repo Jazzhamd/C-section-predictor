@@ -2,10 +2,10 @@ import React from 'react';
 import { Box, Typography, Button } from '@mui/material';
 
 
-// Forward ref to About component and receive predictRef from App.js
+
 const About = React.forwardRef(({ predictRef }, ref) => {
 
-  // handleScroll function to scroll to the Predict section
+ 
   const handleScroll = () => {
     if (predictRef && predictRef.current) {
       predictRef.current.scrollIntoView({ behavior: 'smooth' });
@@ -14,7 +14,7 @@ const About = React.forwardRef(({ predictRef }, ref) => {
 
   return (
     <Box
-      ref={ref}  // This ref is for the About section (Navbar scrolls to this)
+      ref={ref}  
       sx={{
         height: '100vh',
         display: 'flex',
@@ -34,7 +34,7 @@ const About = React.forwardRef(({ predictRef }, ref) => {
         }}
       />
 
-      {/* Text section */}
+      
       <Box
         sx={{
           display: 'flex',

@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 
 const Model = React.forwardRef((props, ref) => {
   const [models, setModelsData] = useState([]);
-  const [hoveredIndex, setHoveredIndex] = useState(null); // Track which box is hovered
+  const [hoveredIndex, setHoveredIndex] = useState(null); 
 
   useEffect(() => {
     const formattedModels = Object.entries(modelsData).map(([name, metrics]) => ({
