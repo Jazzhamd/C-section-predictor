@@ -105,11 +105,14 @@ df = pd.DataFrame(imputer.fit_transform(df), columns=df.columns)
 
 c_section_df = df[df['CLASSIFICATION OF BIRTH'] == 'c-section']
 normal_df = df[df['CLASSIFICATION OF BIRTH'] == 'normal']
+c_section_df=c_section_df.drop(columns=["CLASSIFICATION OF BIRTH","TYPE OF BIRTH"])
+normal_df=normal_df.drop(columns=["CLASSIFICATION OF BIRTH","TYPE OF BIRTH"])
 
+c_section_df=pd.DataFrame(imputer.fit_transform(c_section_df),columns=c_section_df.columns)
+normal_df=pd.DataFrame(imputer.fit_transform(normal_df),columns=normal_df.columns)
 # Select a random instance from each group
-random_c_section_instance = c_section_df.sample(n=1, random_state=42).drop(columns=["CLASSIFICATION OF BIRTH", "TYPE OF BIRTH"])
-random_normal_instance = normal_df.sample(n=1, random_state=42).drop(columns=["CLASSIFICATION OF BIRTH", "TYPE OF BIRTH"])
-
+random_c_section_instance = c_section_df.sample(n=1, random_state=42)
+random_normal_instance = normal_df.sample(n=1, random_state=42)
 
 # Save these instances as separate CSV files
 random_c_section_instance.to_csv("random_c_section_instance.csv", index=False)
