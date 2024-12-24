@@ -9,14 +9,13 @@ import os
 
 
 models = {
-    "K-Nearest Neighbors": pickle.load(open(os.path.abspath("KNN.pkl"), "rb")),
-    "Decision Tree": pickle.load(open(os.path.abspath("dt.pkl"), "rb")),
-    "Random Forest": pickle.load(open(os.path.abspath("rf.pkl"), "rb")),
-    "Support Vector Machine": pickle.load(open(os.path.abspath("clf.pkl"), "rb")),
-    "Logistic Regression": pickle.load(open(os.path.abspath("Logreg.pkl"), "rb")),
-    "Neural Network": load_model(os.path.abspath("nn_model.keras"))
+    "K-Nearest Neighbors": pickle.load(open("KNN.pkl", "rb")),
+    "Decision Tree": pickle.load(open("dt.pkl", "rb")),
+    "Random Forest": pickle.load(open("rf.pkl", "rb")),
+    "Support Vector Machine": pickle.load(open("clf.pkl", "rb")),
+    "Logistic Regression": pickle.load(open("Logreg.pkl", "rb")),
+    "Neural Network": load_model("nn_model.keras")
 }
-
 
 
 
