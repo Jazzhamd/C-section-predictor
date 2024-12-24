@@ -6,13 +6,14 @@ import json
 from keras.models import load_model
 
 models = {
-    "K-Nearest Neighbors": pickle.load(open("KNN.pkl", "rb")),
-    "Decision Tree": pickle.load(open("dt.pkl", "rb")),
-    "Random Forest": pickle.load(open("rf.pkl", "rb")),
-    "Support Vector Machine": pickle.load(open("clf.pkl", "rb")),
-    "Logistic Regression": pickle.load(open("Logreg.pkl", "rb")),
-    "Neural Network": load_model("nn_model.keras")
+    "K-Nearest Neighbors": pickle.load(open("./KNN.pkl", "rb")),
+    "Decision Tree": pickle.load(open("./dt.pkl", "rb")),
+    "Random Forest": pickle.load(open("./rf.pkl", "rb")),
+    "Support Vector Machine": pickle.load(open("./clf.pkl", "rb")),
+    "Logistic Regression": pickle.load(open("./Logreg.pkl", "rb")),
+    "Neural Network": load_model("./nn_model.keras")
 }
+
 
 label_encoders = pickle.load(open("label_encoders.pkl", "rb"))
 scaler = pickle.load(open("standard_scaler.pkl", "rb"))
