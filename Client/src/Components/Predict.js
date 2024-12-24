@@ -96,7 +96,7 @@ const Predict = React.forwardRef((props, ref) => {
           marginRight: "100px",
         }}
       >
-        <h2 style={{ marginBottom: '50px' }}>Predict</h2>
+        <h2 style={{ marginBottom: '50px', marginTop: '250px' }}>Predict</h2>
         <Form onSubmit={handlePredict} style={{ width: "300px" }}>
           <Form.Label>Select Birth Type</Form.Label>
           <Form.Select
@@ -161,7 +161,7 @@ const Predict = React.forwardRef((props, ref) => {
           marginRight: "100px",
         }}
       >
-        <h2 style={{ marginBottom: "50px" }}>Predict using file</h2>
+        <h2 style={{ marginBottom: "50px", marginTop:'250px' }}>Predict using file</h2>
         <Form onSubmit={handlePredict1} style={{ width: "300px" }}>
           <Form.Label>Upload CSV File:</Form.Label>
           <Form.Control
