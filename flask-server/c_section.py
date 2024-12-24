@@ -296,45 +296,45 @@ print(f"Accuracy of Support Vector Machine: {svm_accuracy:.2f}%")
 
 results = {
     "K Nearest Neighbours": {
-        "accuracy": KNN_accuracy,
-        "precision": KNN_precision,
-        "recall": KNN_recall,
-        "f1_score": KNN_f1score,
+        "Accuracy": KNN_accuracy,
+        "Precision": KNN_precision,
+        "Recall": KNN_recall,
+        "F1_score": KNN_f1score,
         "confusion_matrix": KNN_confusion_matrix
     },
     "Decision Tree": {
-        "accuracy": dectree_accuracy,
-        "precision": dectree_precision,
-        "recall": dectree_recall,
-        "f1_score": dectree_f1score,
+        "Accuracy": dectree_accuracy,
+        "Precision": dectree_precision,
+        "Recall": dectree_recall,
+        "F1_score": dectree_f1score,
         "confusion_matrix": dectree_confusion_matrix
     },
     "Logistic Regression": {
-        "accuracy": logreg_accuracy,
-        "precision": logreg_precision,
-        "recall": logreg_recall,
-        "f1_score": logreg_f1score,
+        "Accuracy": logreg_accuracy,
+        "Precision": logreg_precision,
+        "Recall": logreg_recall,
+        "F1_score": logreg_f1score,
         "confusion_matrix": logreg_confusion_matrix
     },
     "Neural Network":{
-      "accuracy": nn_accuracy,
-        "precision": nn_precision,
-        "recall": nn_recall,
-        "f1_score": nn_f1score,
+      "Accuracy": nn_accuracy,
+        "Precision": nn_precision,
+        "Recall": nn_recall,
+        "F1_score": nn_f1score,
         "confusion_matrix":nn_confusion_matrix
     },
     "Random Forest":{
-        "accuracy": randomforest_accuracy,
-        "precision": randomforest_precision,
-        "recall": randomforest_recall,
-        "f1_score": randomforest_f1score,
+        "Accuracy": randomforest_accuracy,
+        "Precision": randomforest_precision,
+        "Recall": randomforest_recall,
+        "F1_score": randomforest_f1score,
         "confusion_matrix":randomforest_confusion_matrix
     },
     "Support Vector Machine":{
-        "accuracy": svm_accuracy,
-        "precision": svm_precision,
-        "recall": svm_recall,
-        "f1_score": svm_f1score,
+        "Accuracy": svm_accuracy,
+        "Precision": svm_precision,
+        "Recall": svm_recall,
+        "F1_score": svm_f1score,
         "confusion_matrix":svm_confusion_matrix
     }
 }

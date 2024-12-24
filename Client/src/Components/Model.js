@@ -13,10 +13,10 @@ const Model = React.forwardRef((props, ref) => {
     const formattedModels = Object.entries(modelsData).map(([name, metrics]) => ({
       name,
       metrics: [
-        `Accuracy: ${metrics.accuracy.toFixed(2)}%`,
-        `Precision: ${metrics.precision.toFixed(2)}%`,
-        `Recall: ${metrics.recall.toFixed(2)}%`,
-        `F1 Score: ${metrics.f1_score.toFixed(2)}%`,
+        `Accuracy: ${metrics.Accuracy.toFixed(2)}%`,
+        `Precision: ${metrics.Precision.toFixed(2)}%`,
+        `Recall: ${metrics.Recall.toFixed(2)}%`,
+        `F1 Score: ${metrics.F1_score.toFixed(2)}%`,
       ],
       description:
         name === "K Nearest Neighbours"
