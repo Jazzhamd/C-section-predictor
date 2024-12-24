@@ -4,15 +4,19 @@ import numpy as np
 import pickle
 import json
 from keras.models import load_model
+import os
+
+
 
 models = {
-    "K-Nearest Neighbors": pickle.load(open("./KNN.pkl", "rb")),
-    "Decision Tree": pickle.load(open("./dt.pkl", "rb")),
-    "Random Forest": pickle.load(open("./rf.pkl", "rb")),
-    "Support Vector Machine": pickle.load(open("./clf.pkl", "rb")),
-    "Logistic Regression": pickle.load(open("./Logreg.pkl", "rb")),
-    "Neural Network": load_model("./nn_model.keras")
+    "K-Nearest Neighbors": pickle.load(open(os.path.join(os.getcwd(), "KNN.pkl"), "rb")),
+    "Decision Tree": pickle.load(open(os.path.join(os.getcwd(), "dt.pkl"), "rb")),
+    "Random Forest": pickle.load(open(os.path.join(os.getcwd(), "rf.pkl"), "rb")),
+    "Support Vector Machine": pickle.load(open(os.path.join(os.getcwd(), "clf.pkl"), "rb")),
+    "Logistic Regression": pickle.load(open(os.path.join(os.getcwd(), "Logreg.pkl"), "rb")),
+    "Neural Network": load_model(os.path.join(os.getcwd(), "nn_model.keras"))
 }
+
 
 
 label_encoders = pickle.load(open("label_encoders.pkl", "rb"))
